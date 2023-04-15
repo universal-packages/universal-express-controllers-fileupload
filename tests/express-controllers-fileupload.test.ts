@@ -2,6 +2,7 @@ import { ExpressApp } from '@universal-packages/express-controllers'
 import fetch from 'node-fetch'
 import FormData from 'form-data'
 import { createReadStream } from 'fs'
+import { setFileUploadOptions } from '../src'
 
 const port = 4000 + Number(process.env['JEST_WORKER_ID'])
 
@@ -13,6 +14,9 @@ afterEach(async (): Promise<void> => {
 describe('express-controllers-fileupload', (): void => {
   it('It executed configured middleware all across controllers', async (): Promise<void> => {
     app = new ExpressApp({ appLocation: './tests/__fixtures__', port })
+
+    setFileUploadOptions({ tempFileDir: './tmp' })
+
     await app.prepare()
     await app.run()
 
