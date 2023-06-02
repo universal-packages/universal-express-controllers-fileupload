@@ -1,4 +1,5 @@
 import fileUpload from 'express-fileupload'
+
 import { CurrentOptions } from './types'
 
 export const CURRENT_OPTIONS: CurrentOptions = { options: {} }

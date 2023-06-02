@@ -1,7 +1,8 @@
 import { ExpressApp } from '@universal-packages/express-controllers'
-import fetch from 'node-fetch'
 import FormData from 'form-data'
 import { createReadStream } from 'fs'
+import fetch from 'node-fetch'
+
 import { setFileUploadOptions } from '../src'
 
 const port = 4000 + Number(process.env['JEST_WORKER_ID'])
