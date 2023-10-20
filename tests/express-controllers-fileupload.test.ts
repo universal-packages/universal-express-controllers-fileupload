@@ -1,7 +1,4 @@
 import { ExpressApp } from '@universal-packages/express-controllers'
-import FormData from 'form-data'
-import { createReadStream } from 'fs'
-import fetch from 'node-fetch'
 
 import { setFileUploadOptions } from '../src'
 
@@ -23,15 +20,8 @@ describe('express-controllers-fileupload', (): void => {
 
     app.on('request/error', console.log)
 
-    const stream = createReadStream('./tests/__fixtures__/file.txt')
-    const formData = new FormData()
-    formData.append('fileAttachment', stream)
-
-    let response = await fetch(`http://localhost:${port}/good/1`, {
-      method: 'POST',
-      body: formData
-    })
-    expect(response.status).toBe(200)
-    expect(await response.json()).toMatchObject({ files: { fileAttachment: { name: 'file.txt' } } })
+    await fPost('good/1', fBuildFormData({}, { fileAttachment: './tests/__fixtures__/file.txt' }))
+    expect(fResponse).toHaveReturnedWithStatus('OK')
+    expect(fResponseBody).toMatchObject({ files: { fileAttachment: { name: 'file.txt' } } })
   })
 })
