@@ -19,7 +19,7 @@
     "express-fileupload": "^1.4.1"
   },
   "peerDependencies": {
-    "@universal-packages/express-controllers": "^1.14.1"
+    "@universal-packages/express-controllers": "^1.14.2"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
